@@ -1,0 +1,18 @@
+version: '3'
+services:
+  api:
+    build: .
+    command: npm start
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo_db
+    environment:
+      DATABASE_URL: mongodb://vokal:V0kalAppZ@ds223756.mlab.com:23756/nodechallenge
+  mongo_db:
+    image: mongo
+    ports:
+      - "23756:23756"
